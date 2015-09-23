@@ -29,6 +29,7 @@ The following methods are provided:
 
 ## Examples
 
+```
 // create test folder
 FileHelper::create('test');
 
@@ -87,3 +88,4 @@ FileHelper::deleteR('test', '/.*.php/', 1);
 
 // delete the test/test.php file
 FileHelper::delete('test/test.php');
+```
