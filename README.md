@@ -105,12 +105,12 @@ foreach($iter as $file){
 	echo $file."\n";
 }
 
-// delete all folders and files under test recursively
-FilesystemHelper::deleteR('test', null);
-
 /**
 DELETE FUNCTIONS ARE NOT FORGIVING. USE WITH CAUTION
 */
+
+// delete all folders and files under test recursively
+FilesystemHelper::deleteR('test', null);
 
 // delete all direct folders and files under test
 FilesystemHelper::delete('test', null);
