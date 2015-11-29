@@ -27,65 +27,97 @@ The following methods are provided:
 - ```public static function deleteR($folder, $pattern=null, $depth=-1)```
 - ```public static function delete($folder_or_file, $pattern=null)```
 
+## Installation
+
+The class can be used standalone, however it's recommended to install via Composer:
+
+`composer require iautomation/filesystem-helper`
+
+## Usage
+
+If using Composer, just do something like:
+```
+use \FilesystemHelper\FilesystemHelper;
+
+include 'path/to/vendor/autoload.php';
+
+FilesystemHelper::deleteR('test', null); // DELETE TEST AND ALL CONTENTS!!
+```
+
+Otherwise, simply include the class:
+```
+use \FilesystemHelper\FilesystemHelper;
+
+include 'path/to/FilesystemHelper.php';
+
+FilesystemHelper::deleteR('test', null); // DELETE TEST AND ALL CONTENTS!!
+```
+
+
+
 ## Examples
 
 ```
 // create test folder
-FileHelper::create('test');
+FilesystemHelper::create('test');
 
 // write to test/test.php
-FileHelper::write('test/test.php', 'test123');
+FilesystemHelper::write('test/test.php', 'test123');
 
 // get file contents
-echo FileHelper::read('test/a.php');
+echo FilesystemHelper::read('test/a.php');
 
 // get all direct folders and files under test
-foreach(FileHelper::search('test') as $file){
+foreach(FilesystemHelper::search('test') as $file){
 	echo $file."\n";
 }
 
 // get all folders and files under test recursively
-foreach(FileHelper::searchR('test') as $file){
+foreach(FilesystemHelper::searchR('test') as $file){
 	echo $file."\n";
 }
 
 // get all direct files under test with the php extension using regex
-foreach(FileHelper::search('test', '/.*.php/') as $file){
+foreach(FilesystemHelper::search('test', '/.*.php/') as $file){
 	echo $file."\n";
 }
 
 // get all recursive files under test with the php extension using regex
-foreach(FileHelper::searchR('test', '/.*.php/') as $file){
+foreach(FilesystemHelper::searchR('test', '/.*.php/') as $file){
 	echo $file."\n";
 }
 
 // get all directories under test
-foreach(FileHelper::searchR('test') as $file){
+foreach(FilesystemHelper::searchR('test') as $file){
 	if($file->isDir())
 		echo $file."\n";
 }
 
 // get all files under test
-foreach(FileHelper::searchR('test') as $file){
+foreach(FilesystemHelper::searchR('test') as $file){
 	if($file->isFile())
 		echo $file."\n";
 }
 
 // get all folders and files under test listed "backwards". This is particularly useful when deleting
-$iter = FileHelper::searchR('test', null, -1, RecursiveIteratorIterator::CHILD_FIRST);
+$iter = FilesystemHelper::searchR('test', null, -1, RecursiveIteratorIterator::CHILD_FIRST);
 foreach($iter as $file){
 	echo $file."\n";
 }
 
 // delete all folders and files under test recursively
-FileHelper::deleteR('test', null);
+FilesystemHelper::deleteR('test', null);
+
+/**
+DELETE FUNCTIONS ARE NOT FORGIVING. USE WITH CAUTION
+*/
 
 // delete all direct folders and files under test
-FileHelper::delete('test', null);
+FilesystemHelper::delete('test', null);
 
 // delete all recursive files under test with the php extension using regex
-FileHelper::deleteR('test', '/.*.php/', 1);
+FilesystemHelper::deleteR('test', '/.*.php/', 1);
 
 // delete the test/test.php file
-FileHelper::delete('test/test.php');
+FilesystemHelper::delete('test/test.php');
 ```

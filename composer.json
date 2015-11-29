@@ -1,0 +1,21 @@
+{
+    "name": "iautomation/filesystem-helper",
+    "description": "",
+    "keywords": ["php", "filesystem", "recursion", "file", "folder", "create", "remove"],
+    "type": "library",
+    "require": {
+    },
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Joshua McKenzie",
+            "email": "whereyoucanemailme@gmail.com"
+        }
+    ],
+    "minimum-stability": "stable",
+    "autoload": {
+        "psr-0": {
+            "FilesystemHelper\\": "src/"
+        }
+    }
+}
